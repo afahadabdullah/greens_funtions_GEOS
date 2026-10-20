@@ -17,6 +17,7 @@ This repository contains the complete codebase, optimization algorithms, paramet
    - [Atmosphere & Ocean Seasonal Diagnostics](#4-atmosphere--ocean-seasonal-diagnostics)
 7. [Repository Structure](#repository-structure)
 8. [Setup & Execution Guide (Handoff Instructions)](#setup--execution-guide-handoff-instructions)
+9. [Developer Handoff Guide (handoff.md)](handoff.md)
 
 ---
 
@@ -237,6 +238,7 @@ Seasonal (DJF and JJA) diagnostics for key atmospheric levels and ocean depths:
 ```
 greens_funtions_GEOS/
 ├── README.md                      # Complete project documentation and walkthrough
+├── handoff.md                     # Comprehensive developer handoff & next-generation guide
 ├── .gitignore                     # Git ignore rules (strictly excludes large data/NetCDF files)
 ├── requirements.txt               # Python package dependencies
 ├── plots_viewer.html              # Portable interactive HTML plot gallery (all 156 plots)
@@ -249,6 +251,17 @@ greens_funtions_GEOS/
 │   ├── plot_gf01_gfopt_comparison.py # Control vs Optimized comparison maps
 │   ├── plot_sst_comparison_ocean_only.py # Ocean-only SST bias analysis
 │   └── analyze_cloud_impact.py    # Cloud fraction analysis (CLDLO, CLDMD, CLDHI)
+├── processing/                    # Climatology and target data processing scripts
+│   ├── extract_clim.py            # Extracts 10-year DJF/JJA seasonal means from GEOS runs
+│   ├── process_merra2.py          # Preprocesses MERRA-2 target NetCDF fields
+│   ├── get_target_era5.py         # Retrieves & processes ERA5 target from cloud zarr
+│   ├── find_missing.py            # Verifies completeness of simulation output
+│   ├── check_longnames.py         # Inspects NetCDF metadata and variable naming
+│   ├── check_vars_v2.py           # Coordinate & dimension validation
+│   ├── analyze_warming_pattern.py # Computes spatial warming patterns
+│   ├── compare_GF01_GF22_TS.py    # Difference comparison for baseline vs experiments
+│   ├── run_extract.sh             # Cluster batch extraction script
+│   └── merra2_download_urls.txt   # NASA GES DISC download links for MERRA-2 collections
 ├── results/                       # Optimization result tables (CSV)
 │   ├── optimization_results.csv   # Ranked parameter results (Least Squares)
 │   └── optimization_results_GFO_Algo.csv # Ranked parameter results (Menemenlis GFO for Q=0, 0.5, 1.0)
